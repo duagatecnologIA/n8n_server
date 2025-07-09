@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_USER_MANAGEMENT_JWT_SECRET=tecnologia
+      - N8N_USER_MANAGEMENT_DISABLED=false
+      - N8N_OWNER_EMAIL=tecnologia@duaga.com
+      - N8N_OWNER_FIRST_NAME=duaga
+      - N8N_OWNER_LAST_NAME=admin
+      - N8N_OWNER_PASSWORD=1067926642+Hm
+      - N8N_HOST=34.72.193.21
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://34.72.193.21:5678/
+      - N8N_SECURE_COOKIE=false
+      - TZ=America/Bogota
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - n8n_network
+
+volumes:
+  n8n_data:
+
+networks:
+  n8n_network:
+    driver: bridge
